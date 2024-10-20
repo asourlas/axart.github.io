@@ -11,10 +11,10 @@ Video: https://youtu.be/7CZx4ntO3zM
 
 The model that AutoBeat uses is GPT-2, developed by OpenAI (2019). The inspiration behind the use of a Transformer-based language model like GPT-2 came from this paper: https://arxiv.org/abs/1809.04281 which explains why this architecture could work with symbolic music representation. 
 
-Since we decided to embed the model into the plugin code, we used the smallest version (around 124 million parameters) to keep the plugin size within a reasonable range.
+We decided to embed the model into the plugin code (more about that below). Therefore, we used the smallest version (around 124 million parameters) to keep the plugin size within a reasonable range.
 
 ## Fine-tuning
-Instead of training the model from scratch, we relied on a process called fine-tuning: we trained the model further 
+Instead of training the model from scratch, we relied on a fine-tuning process: we provided the already-trained model with our MIDI data and trained it further. That part was done in Python using Google Colab (https://colab.research.google.com)
 
 ## Custom embeddings
 One of the challenges of using a language model for symbolic music processing is converting the music data into a format that the model understands. A popular solution is to encode the data into custom _tokens_, character sets that can be added to the model's existing "vocabulary". Unlike the majority of MIDI tokenization techniques (https://arxiv.org/abs/2310.17202), AutoBeat makes use of a custom way to tokenize the MIDI data. This is an example:    
