@@ -1,16 +1,17 @@
 # AutoBeat plugin: On-device AI MIDI generation with GPT-2 and JUCE
 ![autobeat-thumb](https://github.com/user-attachments/assets/a138eb79-4f50-43f9-bc37-a69c45f4d17e)
 ## Introduction
-The use of LLMs (Large Language Models) in generative symbolic music, including MIDI, has become a widely explored topic in the academic world, with good potential for commercial application use. 
+The use of AI models in generative symbolic music, including MIDI, has become a widely explored topic in the academic world, with good potential for commercial application use. 
 
 One such example is **AutoBeat**. 
 
-AutoBeat is a MIDI beat generator plugin (MacOS/Win), made with JUCE, which uses a GPT-2 AI model to generate MIDI beats in various electronic music genres and with parameters provided by the user.
+AutoBeat is a MIDI beat generator plugin (MacOS/Win), made with JUCE, which uses an AI model to generate MIDI beats in various electronic music genres and with parameters provided by the user.
 
 Video: https://youtu.be/7CZx4ntO3zM
 
-## Symbolic music and GPT-2
-As mentioned above, AutoBeat uses a GPT-2 AI model (2019, OpenAI) for beat generation. The inspiration behind the use of a Transformer-based language model like GPT-2 came from this paper: https://arxiv.org/abs/1809.04281 which explains why this kind of architecture could work with symbolic music representation. Since decided to embed the model into the plugin code, we used the smallest version (around 124 million parameters).
+The model that AutoBeat uses is GPT-2, developed by OpenAI (2019). The inspiration behind the use of a Transformer-based language model like GPT-2 came from this paper: https://arxiv.org/abs/1809.04281 which explains why this architecture could work with symbolic music representation. 
+
+Since we decided to embed the model into the plugin code, we used the smallest version (around 124 million parameters) to keep the plugin size within a reasonable range.
 
 ## Fine-tuning
 Instead of training the model from scratch, we relied on a process called fine-tuning: we trained the model further 
