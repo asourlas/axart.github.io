@@ -17,7 +17,16 @@ We decided to embed the model into the plugin code (more about that below). Ther
 Instead of training the model from scratch, we relied on a fine-tuning process: we provided the already-trained model with our MIDI data and trained it further. That part was done in Python using Google Colab (https://colab.research.google.com)
 
 ## Custom embeddings
-One of the challenges of using a language model for symbolic music processing is converting the music data into a format that the model understands. A popular solution is to encode the data into custom _tokens_, character sets that can be added to the model's existing "vocabulary". Unlike the majority of MIDI tokenization techniques (https://arxiv.org/abs/2310.17202), AutoBeat makes use of a custom way to tokenize the MIDI data. This is an example:    
+One of the challenges of using a language model for symbolic music processing is converting the music data into a format that the model understands. A popular solution is to encode the data into custom _tokens_, character sets that can be added to the model's existing vocabulary. 
+
+Unlike most MIDI tokenization techniques (https://arxiv.org/abs/2310.17202), AutoBeat uses a custom, grid-based way to represent MIDI data. We believe that this representation was better suited to our use case - electronic music beat generation.
+
+We split every MIDI beat into four instrument groups, according to their function (e.g. group 1 is comprised of kick, rimshot, snare, and clap) and, for every group, we extracted every event and encoded it to a single text line.
+
+**Example**
+
+
+This is an example of a 
 
 
 
