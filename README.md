@@ -10,9 +10,16 @@ AutoBeat is a MIDI beat generator plugin (MacOS/Win), made with JUCE, which uses
 Video: https://youtu.be/7CZx4ntO3zM
 
 ## Symbolic music and GPT-2
-As mentioned above, AutoBeat uses a GPT-2 AI model (2019, OpenAI) for beat generation. The inspiration behind the use of a Transformer-based language model like GPT-2 came from this paper: https://arxiv.org/abs/1809.04281 which explains why this kind of architecture could work with symbolic music representation.
+As mentioned above, AutoBeat uses a GPT-2 AI model (2019, OpenAI) for beat generation. The inspiration behind the use of a Transformer-based language model like GPT-2 came from this paper: https://arxiv.org/abs/1809.04281 which explains why this kind of architecture could work with symbolic music representation. Since decided to embed the model into the plugin code, we used the smallest version (around 124 million parameters).
 
 ## Fine-tuning
+Instead of training the model from scratch, we relied on a process called fine-tuning: we trained the model further 
+
+## Custom embeddings
+One of the challenges of using a language model for symbolic music processing is converting the music data into a format that the model understands. A popular solution is to encode the data into custom _tokens_, character sets that can be added to the model's existing "vocabulary". Unlike the majority of MIDI tokenization techniques (https://arxiv.org/abs/2310.17202), AutoBeat makes use of a custom way to tokenize the MIDI data. This is an example:    
+
+
+
 
 
 ## On-device processing
