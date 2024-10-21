@@ -27,11 +27,7 @@ We split every MIDI beat into four instrument groups, according to their functio
 
 In addition to that, and for every beat group, we added the genre, the beat type, the music density (number of events), and the music intensity (how many events occur on- and offbeat). 
 
-**Example**
-
-
-This is an example of a 
-
+This is an example of a training prompt:
 `genre:trap type:beat_loop density:high intensity:high group:1 step:0 track:4 offset:0 velocity:84 step:4 etc.`
 
 
