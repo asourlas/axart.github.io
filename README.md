@@ -42,6 +42,9 @@ Once the model is done processing and the output is collected, it is decoded int
 ## Performance
 The beat generation's performance varies among different hardware. On more powerful machines (e.g. Silicon-based MacBooks) it is reasonably fast, with most beats taking no more than 4-5 seconds.
 
+## Conclusion
+We hope that the case of AutoBeat shows one of the ways that AI models can be used in a JUCE music plugin.
+
 _Thank you for reading!_
 
 ---
