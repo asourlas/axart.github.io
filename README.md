@@ -23,14 +23,13 @@ Unlike most MIDI tokenization techniques (https://arxiv.org/abs/2310.17202), Aut
 
 ### Implementation
 
-We split every MIDI beat into four instrument groups, according to their function in the beat (e.g. group 1 consists of kick, rimshot, snare, and clap). For every group, we extracted every event and encoded it according to its starting time, expressed as a step on a hypothetical 2-bar, 4-steps-per-beat grid, the offset from that step (so that smaller rhythmic values, as well as rhythmic nuances such as swing, can be represented), the instrument as track number and, finally, its velocity. 
+We split every MIDI beat into four instrument groups, according to their function in the beat (e.g. group 1 consists of kick, rimshot, snare, and clap). For every group, we extracted the MIDI notes and encoded them according to their starting time, expressed as steps on a hypothetical 2-bar, 4-steps-per-beat grid, their step offset (so that smaller rhythmic values, as well as rhythmic nuances such as swing, can be represented), their track number and, finally, their velocity. 
 
-In addition to that, and for every beat group, we added the genre, the beat type, the music density (number of events), and the music intensity (how many events occur on- and offbeat). 
+On top of that, we added the genre, the beat type, the music density (number of events), and the music intensity (how many events occur on- and offbeat). 
 
 This is an example of a training prompt:
+
 `genre:trap type:beat_loop density:high intensity:high group:1 step:0 track:4 offset:0 velocity:84 step:4 etc.`
-
-
 
 ## On-device processing
 All AI processing in AutoBeat is done on-device. This became possible by using **ggml** (G. Gerganov et al.), a tensor library for machine learning to enable large models and high performance on commodity hardware (https://ggml.ai). 
