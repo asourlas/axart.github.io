@@ -22,7 +22,6 @@ One of the challenges of using a language model for symbolic music processing is
 Unlike most MIDI tokenization techniques (https://arxiv.org/abs/2310.17202), AutoBeat uses a custom, grid-based way to represent MIDI data. After experimentation, we found that this encoding method was better suited to our use case: multi-track electronic music beat generation.
 
 ### Implementation
-
 We split every MIDI beat into four instrument groups, according to their function in the beat (e.g. group 1 consists of kick, rimshot, snare, and clap). For every group, we extracted the MIDI notes and encoded them according to their starting time, expressed as steps on a hypothetical 2-bar, 4-steps-per-beat grid, their step offset (so that smaller rhythmic values, as well as rhythmic nuances such as swing, can be represented), their track number and, finally, their velocity. 
 
 On top of that, we added the genre, the beat type, the music density (number of events), and the music intensity (how many events occur on- and offbeat). 
@@ -32,9 +31,9 @@ This is an example of a training prompt:
 `genre:trap type:beat_loop density:high intensity:high group:1 step:0 track:4 offset:0 velocity:84 step:4 etc.`
 
 ## On-device processing
-All AI processing in AutoBeat is done on-device. This became possible by using **ggml** (G. Gerganov et al.), a tensor library for machine learning to enable large models and high performance on commodity hardware (https://ggml.ai). 
+All AI processing in AutoBeat is done on-device. This became possible by using **ggml** (G. Gerganov et al.), a great tensor library for machine learning to enable large models and high performance on commodity hardware (https://ggml.ai).
 
-We used the library's GPT-2 example as a starting point and, after some refactoring, we added it to the plugin code. The beat generation process (aka _inference_ in AI jargon) runs in its separate background thread so that it does not block the plugin's workflow. When the user clicks on the generate button, a prompt is constructed and encoded from the parameters (genre, group/tracks, density, intensity) and then is fed into the model. Once the model is done processing and the output is collected, it is decoded into music events and passed on to the audio engine.
+We used the library's GPT-2 example as a starting point and, after some refactoring and tweaking (and caffeine), we managed to add it to the plugin code. The beat generation process (aka _inference_ in AI jargon) runs on a background thread so that it does not block the plugin's workflow. When the user clicks on the generate button, a prompt is constructed and encoded from the parameters (genre, group/tracks, density, intensity) and then is fed into the model. Once the model is done processing and the output is collected, it is decoded into music events and passed on to the audio engine.
 
 Tokenization of the data set - the MIDI data have to be converted to a format that GPT-2 can interpret. 
 
