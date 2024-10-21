@@ -11,7 +11,7 @@ Video: https://youtu.be/7CZx4ntO3zM
 
 The model that AutoBeat uses is GPT-2, developed by OpenAI (2019). The inspiration behind the use of a Transformer-based language model like GPT-2 came from this paper: https://arxiv.org/abs/1809.04281 which explains why this architecture could work with symbolic music representation. 
 
-We decided to embed the model directly into the plugin code (more about that below). Therefore, we used the smallest version to keep the plugin size reasonable (around 300 Mb). 
+We decided to embed the model directly into the plugin code (more about that below). Therefore, we used the smallest version to keep the plugin size within a reasonable range (around 300 Mb). 
 
 ## Fine-tuning
 Instead of training the model from scratch, we relied on a fine-tuning process: we provided the already-trained model with our MIDI data and trained it further. That part was done in Python using Google Colab (https://colab.research.google.com).
@@ -33,14 +33,7 @@ This is an example of a training prompt:
 ## On-device processing
 All AI processing in AutoBeat is done on-device. This became possible by using **ggml** (G. Gerganov et al.), a great tensor library for machine learning to enable large models and high performance on commodity hardware (https://ggml.ai).
 
-We used the library's GPT-2 example as a starting point and, after some refactoring and tweaking (and caffeine), we managed to add it to the plugin code. The beat generation process (aka _inference_ in AI jargon) runs on a background thread so that it does not block the plugin's workflow. When the user clicks on the generate button, a prompt is constructed and encoded from the parameters (genre, group/tracks, density, intensity) and then is fed into the model. Once the model is done processing and the output is collected, it is decoded into music events and passed on to the audio engine.
+We used the library's GPT-2 example as a starting point and, after some refactoring and tweaking (and caffeine), we managed to add it to the plugin code. The beat generation process (aka _inference_) runs on a background thread so that it does not block the plugin's workflow. When the user clicks on the generate button, a prompt is constructed and encoded from the plugin parameters (genre, group/tracks, density, intensity) and then is fed into the model. Once the model is done processing and the output is collected, it is decoded into music events and passed on to the audio engine.
 
-Tokenization of the data set - the MIDI data have to be converted to a format that GPT-2 can interpret. 
-
-* Converting the data set (MIDI) to custom tokens
-* Fine-tune the GPT-2 model with the new training data
-* t
-
-**Training data example**
-
-`genre:trap type:beat_loop density:high intensity:high group:1 step:0 track:4 offset:0 velocity:84 step:4 track:4 offset:0 velocity:84 .....`
+### Performance
+The beat generation's performance varies among different hardware. On more powerful machines (e.g. Silicon-based MacBooks) it is reasonably fast, with most beats taking no more than 4-5 seconds.
