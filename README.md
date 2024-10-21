@@ -23,7 +23,9 @@ Unlike most MIDI tokenization techniques (https://arxiv.org/abs/2310.17202), Aut
 
 ### Implementation
 
-We split every MIDI beat into four instrument groups, according to their function in the beat (e.g. group 1 consists of kick, rimshot, snare, and clap). For every group, we extracted every event and encoded it according to the step on a hypothetical 4 steps-per-beat grid, the offset (so that smaller rhythmic values, as well as rhythmic nuances such as swing, can be represented).
+We split every MIDI beat into four instrument groups, according to their function in the beat (e.g. group 1 consists of kick, rimshot, snare, and clap). For every group, we extracted every event and encoded it according to its starting time, expressed as a step on a hypothetical 4 steps-per-beat grid, the offset from that step (so that smaller rhythmic values, as well as rhythmic nuances such as swing, can be represented), the instrument as track number and its velocity. 
+
+In addition to that, we added the genre, the beat type, the density (the number of events occuring
 
 **Example**
 
