@@ -33,7 +33,17 @@ This is an example of a training prompt:
 ## On-device processing
 All AI processing in AutoBeat is done on-device. This became possible by using **ggml** (G. Gerganov et al.), a great tensor library for machine learning to enable large models and high performance on commodity hardware (https://ggml.ai).
 
-We used the library's GPT-2 example as a starting point and, after some refactoring and tweaking (and caffeine), we managed to add it to the plugin code. The beat generation process (aka _inference_) runs on a background thread so that it does not block the plugin's workflow. When the user clicks on the generate button, a prompt is constructed and encoded from the plugin parameters (genre, group/tracks, density, intensity) and then is fed into the model. Once the model is done processing and the output is collected, it is decoded into music events and passed on to the audio engine.
+We used the library's GPT-2 example as a starting point and, after some refactoring and tweaking (and caffeine), we managed to add it to the plugin code. The beat generation process (aka _inference_) runs on a separate thread so that it does not block the plugin's workflow. 
 
-### Performance
+When the user clicks on the generate button, a prompt is constructed and encoded from the plugin parameters (genre, group/tracks, density, intensity) and then is fed into the model. 
+
+Once the model is done processing and the output is collected, it is decoded into music events and passed on to the audio engine and the UI.
+
+## Performance
 The beat generation's performance varies among different hardware. On more powerful machines (e.g. Silicon-based MacBooks) it is reasonably fast, with most beats taking no more than 4-5 seconds.
+
+_Thank you for reading!_
+
+---
+
+Achillefs Sourlas for Axart Software UG, October 2024.
