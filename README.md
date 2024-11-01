@@ -11,7 +11,7 @@ Video: https://youtu.be/7CZx4ntO3zM
 
 The model that AutoBeat uses is GPT-2, developed by OpenAI (2019). The inspiration behind the use of a Transformer-based language model like GPT-2 came from this paper: https://arxiv.org/abs/1809.04281 which explains why this architecture could work with symbolic music representation. 
 
-We decided to embed the model directly into the plugin code (more about that below). Therefore, we used the smallest version to keep the plugin size within a reasonable range (around 300 Mb). 
+We decided to embed the model directly into the plugin code (more about that below). Therefore, we used the smallest version which is around 300 Mb. 
 
 ## Fine-tuning
 Instead of training the model from scratch, we relied on a fine-tuning process: we provided the already-trained model with our MIDI data and trained it further. That part was done in Python using Google Colab (https://colab.research.google.com).
@@ -19,12 +19,12 @@ Instead of training the model from scratch, we relied on a fine-tuning process: 
 ## Custom tokens/embeddings
 One of the challenges of using a language model for symbolic music processing is converting the music data into a format that the model understands. A popular solution is to encode the data into custom _tokens_, character sets that can be added to the model's existing vocabulary.
 
-Unlike most MIDI tokenization techniques (https://arxiv.org/abs/2310.17202), AutoBeat uses a custom, grid-based way to represent MIDI data. After experimentation, we found that this encoding method was better suited to our use case: multi-track electronic music beat generation.
+Unlike most MIDI tokenization techniques (https://arxiv.org/abs/2310.17202), AutoBeat uses a custom, grid-based way to represent MIDI data. After experimentation, we found that this encoding method better suited our use case: multi-track electronic music beat generation.
 
 ### Implementation
 We split every MIDI beat into four instrument groups, according to their function in the beat (e.g. group 1 consists of kick, rimshot, snare, and clap). For every group, we extracted the MIDI notes and encoded them according to their starting time, expressed as steps on a hypothetical 2-bar, 4-steps-per-beat grid, their step offset (so that smaller rhythmic values, as well as rhythmic nuances such as swing, can be represented), their track number and, finally, their velocity. 
 
-On top of that, we added the genre, the beat type, the music density (number of events), and the music intensity (how many events occur on- and offbeat). 
+We also added the genre, the beat type, the music density (number of events), and the music intensity (the beat's rhythmic 'entropy'). 
 
 This is an example of a training prompt:
 
