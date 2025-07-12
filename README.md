@@ -1,5 +1,6 @@
 # AutoBeat plugin: On-device AI MIDI generation with GPT-2 and JUCE
 <img width="1280" height="720" alt="autobeat-banner" src="https://github.com/user-attachments/assets/8b8e2268-cc67-49f6-b875-89e079fcd252" />
+
 ## Introduction
 The use of AI models in generative symbolic music, including MIDI, has become a widely explored topic in the academic world, with good potential for commercial application use. 
 
