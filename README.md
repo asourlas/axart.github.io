@@ -48,4 +48,4 @@ We hope that the case of AutoBeat shows one of the ways that AI models can be us
 
 ---
 
-Achillefs Sourlas for Axart Software UG, October 2024. Website: https://www.axart.net
+Achillefs Sourlas for Axart Labs OÜ, August 2025. Website: https://www.axart.net
