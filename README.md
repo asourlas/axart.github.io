@@ -8,7 +8,7 @@ One such example is **AutoBeat**.
 
 AutoBeat is a 12-track MIDI beat generator plugin (MacOS/Win), made with JUCE, which uses an AI model to generate MIDI beats in various electronic music genres and with parameters provided by the user.
 
-Video: https://youtu.be/7CZx4ntO3zM
+Video: [https://youtu.be/7CZx4ntO3zM](https://youtu.be/vSbr_2FBmq8)
 
 The model that AutoBeat uses is GPT-2, developed by OpenAI (2019). The inspiration behind the use of a Transformer-based language model like GPT-2 came from this paper: https://arxiv.org/abs/1809.04281 which explains why this architecture could work with symbolic music representation. 
 
